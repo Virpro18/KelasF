@@ -1,0 +1,20 @@
+*,html,body {
+    padding: 0px;
+    margin: 0px;
+}
+:root {
+    background: linear-gradient(30deg,#d2ff55,#ca61a4);
+    min-height: 100vh;
+}
+header {
+    display: flex;
+    max-height: 200px;
+    justify-content: space-evenly;
+}
+.logo {
+    max-height: 200px;
+}
+.logo img {
+    max-height: 200px;
+    border-radius: 10%;
+}
