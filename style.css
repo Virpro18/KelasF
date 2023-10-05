@@ -38,6 +38,7 @@ header {
 }
 
 .nvBtn {
+    background-color: none;
     border: none;
     font-size: 19px;
     width: 75px;
