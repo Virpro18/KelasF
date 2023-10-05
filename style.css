@@ -9,12 +9,19 @@
 header {
     display: flex;
     max-height: 200px;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .logo {
     max-height: 200px;
 }
 .logo img {
-    max-height: 200px;
+    max-height: 13;
     border-radius: 10%;
+}
+.hdNv {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 300px;
+    min-width: 90px;
+    max-height: 100px;
 }
