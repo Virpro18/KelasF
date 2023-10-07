@@ -7,8 +7,13 @@ body {
 }
 
 :root {
-    background: linear-gradient(30deg, #d2ff55, #ca61a4);
+    background: linear-gradient(30deg, #d2ff55, #5bd1ff);
     min-height: 100vh;
+}
+
+p {
+font-family: 'Dela Gothic One', cursive;
+font-family: 'Play', sans-serif;
 }
 
 header {
@@ -16,7 +21,10 @@ header {
     flex-wrap: wrap;
     max-height: 200px;
     background-color: #3332;
+    box-sizing: border-box;
+    align-items: center;
     justify-content: space-between;
+    border: rgb(153, 153, 0) solid 2px;
 }
 
 .logo {
@@ -24,15 +32,33 @@ header {
 }
 
 .logo img {
-    max-height: 90px;
+    max-height: 105px;
     border-radius: 10%;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.title h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 3px;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
 }
 
 .hdNv {
     display: flex;
     align-items: center;
-    max-width: 300px;
+    max-width: 400px;
     min-width: 90px;
+    height: 55px;
     max-height: 100px;
     gap: 5px;
 }
@@ -51,17 +77,40 @@ header {
 }
 
 .nvBtn:hover {
-    background-color: #90785499;
+    background-color: #443c3150;
     color: #673e77;
+}
+
+.chatBot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botAns {
+    min-height: 55px;
+    max-height: auto;
+    min-width: 175px;
+    background-color: #8888884f;
+    border: #555 2px solid;
+    border-radius: 9%;
+}
+
+.botBtn {
+    margin-top: 2px;
+    background-color: #fc71f5;
+    border: none;
+    border-radius: 11%;
 }
 
 .news {
     display: flex;
-    width: 110px;
+    width: 150px;
     height: 75px;
     overflow-x: scroll;
 }
 
 .newsToday {
+    width: 150px;
     position: sticky;
 }
