@@ -12,8 +12,7 @@ body {
 }
 
 p {
-font-family: 'Dela Gothic One', cursive;
-font-family: 'Play', sans-serif;
+    font-family: 'Play', sans-serif;
 }
 
 header {
@@ -36,6 +35,11 @@ header {
     border-radius: 10%;
 }
 
+.Copyright {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+
 .title {
     display: flex;
     flex-direction: column;
@@ -46,16 +50,19 @@ header {
 }
 
 .title h1 {
-    font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 3px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Dela Gothic One', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Play', sans-serif;
     font-size: 40px;
-    margin: 0;
-    padding: 0;
+    letter-spacing: 2px;
 }
 
 .hdNv {
     display: flex;
     align-items: center;
+    font-family: 'Play', sans-serif;
     max-width: 400px;
     min-width: 90px;
     height: 55px;
@@ -64,6 +71,7 @@ header {
 }
 
 .nvBtn {
+    font-weight: 450;
     background-color: rgba(240, 248, 255, 0);
     border: none;
     font-size: 19px;
