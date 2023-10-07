@@ -11,10 +11,6 @@ body {
     min-height: 100vh;
 }
 
-p {
-    font-family: 'Play', sans-serif;
-}
-
 header {
     display: flex;
     flex-wrap: wrap;
@@ -38,6 +34,7 @@ header {
 .Copyright {
     font-size: 20px;
     letter-spacing: 1.5px;
+    font-family: 'Play', sans-serif;
 }
 
 .title {
@@ -82,6 +79,7 @@ header {
     cursor: pointer;
     border-radius: 11%;
     object-fit: cover;
+    font-family: 'Play', sans-serif;
 }
 
 .nvBtn:hover {
@@ -96,29 +94,53 @@ header {
 }
 
 .botAns {
-    min-height: 55px;
+    min-height: 65px;
     max-height: auto;
     min-width: 175px;
+    max-width: 230px;
     background-color: #8888884f;
     border: #555 2px solid;
     border-radius: 9%;
 }
+.userInput {
+    margin-top: 3.5px;
+    background-color: rgba(155, 231, 155, 0.322);
+    border-radius: 6%;
+}
 
 .botBtn {
     margin-top: 2px;
-    background-color: #fc71f5;
+    background-color: #7186fc88;
     border: none;
     border-radius: 11%;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out;
+}
+.botBtn:hover {
+    scale: 1.15;
+    background-color: #8066897c;
 }
 
 .news {
     display: flex;
-    width: 150px;
-    height: 75px;
+    min-width: 150px;
+    max-width: 200px;
+    min-height: 75px;
+    max-height: 140px;
     overflow-x: scroll;
+    align-items: center;
+    justify-content: space-between;
+    border: #9898 solid 2px;
+    border-radius: 9%;
 }
 
 .newsToday {
-    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    min-height: 75px;
+    min-width: 190px;
+    max-width: 250px;
     position: sticky;
 }
