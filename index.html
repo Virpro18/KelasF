@@ -41,11 +41,16 @@
             </nav>
         </div>
         <div class="chatBot">
+            <div class="time">
+                <p id="jam"></p>
+                <p id="menit"></p>
+                <p id="detik"></p>
+            </div>
             <div class="botAns" id="botAns">
-                <p>Hi di sini Kbot,ada yang bisa di bantu?</p>
+                <p></p>
             </div>
             <input type="text" name="" id="userInput" class="userInput" placeholder="masukkan jawaban mu">
-            <button class="botBtn">Jawab</button>
+            <button class="botBtn" onclick="jawab()">Jawab</button>
         </div>
         <div class="news">
             <div class="newsToday ">
@@ -63,6 +68,9 @@
         </div>
     </header>
     <main>
+        <!-- <h4 id="jam"></h4>
+        <h4 id="menit"></h4>
+        <h4 id="detik"></h4> -->
     </main>
     <script src="script.js"></script>
 </body>

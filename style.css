@@ -86,6 +86,16 @@ header {
     background-color: #443c3150;
     color: #673e77;
 }
+.time {
+    display: flex;
+    gap: 7px;
+}
+#jam,#menit,#detik {
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 2px;
+    border: solid 1.5px #676a;
+}
 
 .chatBot {
     display: flex;
@@ -94,6 +104,8 @@ header {
 }
 
 .botAns {
+    display: flex;
+    justify-content: center;
     min-height: 65px;
     max-height: auto;
     min-width: 175px;
