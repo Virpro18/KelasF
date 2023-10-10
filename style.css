@@ -21,6 +21,11 @@ header {
     justify-content: space-between;
     border: rgb(153, 153, 0) solid 2px;
 }
+
+p {
+    font-family: 'Exo 2', sans-serif;
+}
+
 .here {
     border-bottom: #3ed1ac 2px solid;
 }
@@ -34,7 +39,7 @@ header {
     border-radius: 10%;
 }
 
-.Copyright {
+.Copyright p{
     font-size: 20px;
     letter-spacing: 1.5px;
     font-family: 'Play', sans-serif;
@@ -89,11 +94,14 @@ header {
     background-color: #443c3150;
     color: #673e77;
 }
+
 .time {
     display: flex;
     gap: 7px;
 }
+
 .time p {
+    font-family: 'Play', sans-serif;
     font-size: 20px;
     box-sizing: border-box;
     padding: 2px;
@@ -112,11 +120,12 @@ header {
     min-height: 65px;
     max-height: auto;
     min-width: 175px;
-    max-width: 230px;
+    max-width: 200px;
     background-color: #8888884f;
     border: #555 2px solid;
     border-radius: 9%;
 }
+
 .userInput {
     margin-top: 3.5px;
     background-color: rgba(155, 231, 155, 0.322);
@@ -131,6 +140,7 @@ header {
     cursor: pointer;
     transition: all 0.45s ease-in-out;
 }
+
 .botBtn:hover {
     scale: 1.15;
     background-color: #8066897c;
@@ -159,4 +169,16 @@ header {
     min-width: 200px;
     max-width: 250px;
     position: sticky;
+}
+
+main {
+    margin: 20px 0px;
+}
+
+.mnTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
 }

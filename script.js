@@ -19,9 +19,9 @@ window.setTimeout("waktu()", 1000);
 
         if(jam < 12) {
             day = "Pagi"
-        } else if (jam < 3) {
+        } else if (jam < 15) {
          day = "Siang"
-        } else if (jam < 6) {
+        } else if (jam < 18) {
          day = "Sore  "
         } else {
          day = "Malam"
