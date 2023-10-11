@@ -1,6 +1,24 @@
+a {
+    color: rgba(82, 73, 207, 0.705);
+    text-decoration: none;
+}
+
 .time {
     width: 200px;
 }
+
 .time p {
     font-size: 30px;
+}
+
+.mnContent {
+    text-align: center;
+}
+#PRbtn {
+    cursor: pointer;
+}
+
+.Add {
+    background: linear-gradient(30deg, #eaeaea, #5262be90);
+
 }
