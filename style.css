@@ -26,8 +26,9 @@ p {
     font-family: 'Exo 2', sans-serif;
 }
 
-.here {
-    border-bottom: #3ed1ac 2px solid;
+.hdNv .here {
+    color: #fdec00ab;
+    text-decoration: underline #b8fa7e62 3px;
 }
 
 .logo {
@@ -86,7 +87,6 @@ p {
     transition: all 0.5s ease-in-out;
     cursor: pointer;
     border-radius: 11%;
-    object-fit: cover;
     font-family: 'Play', sans-serif;
 }
 
