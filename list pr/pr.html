@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="../assets/Black And White Modern Vintage Retro Brand Logo (1).png">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="pr.css">
@@ -18,29 +18,31 @@
 
 <body>
     <header class=" animate__animated animate__fadeIn animate__slower 2s">
-        <div class="logo">
-            <img src="../assets/LogoF.png" alt="Error IMG 404">
-        </div>
-        <div class="Copyright">
-            <p>&copy;Copyright KelasF <br>KelasF &trade;</p>
+        <div class="sm">
+            <div class="logo">
+                <img src="../assets/LogoF.png" alt="Error IMG 404">
+            </div>
+            <div class="Copyright">
+                <p>&copy;Copyright KelasF <br>KelasF &trade;</p>
+            </div>
         </div>
         <div class="title">
             <h1>List PR</h1>
             <nav class="hdNv">
                 <a href="../index.html" class="nvLink">
-                    <button class="nvBtn" id="nvBtn">Home</button>
+                    <button class="nvBtn">Home</button>
                 </a>
                 <a class="nvLink">
-                    <button class="nvBtn here" id="nvBtn">List PR</button>
+                    <button class="nvBtn here">List PR</button>
                 </a>
                 <a href="" class="nvLink">
-                    <button class="nvBtn" id="nvBtn">Project</button>
+                    <button class="nvBtn">Project</button>
                 </a>
                 <a href="" class="nvLink">
-                    <button class="nvBtn" id="nvBtn">Docs</button>
+                    <button class="nvBtn">Docs</button>
                 </a>
                 <a href="" class="nvLink">
-                    <button class="nvBtn" id="nvBtn">About</button>
+                    <button class="nvBtn">About</button>
                 </a>
             </nav>
         </div>
@@ -51,28 +53,13 @@
                 <p>:</p>
                 <p id="detik"></p>
             </div>
-        </div>
-        <div class="news">
-            <div class="newsToday ">
-                <h3>Update Hari ini</h4>
-            </div>
-            <div class="newsToday">
-                <h3>lala</h3>
-            </div>
-            <div class="newsToday">
-                <h3>lala</h3>
-            </div>
-            <div class="newsToday">
-                <h3>lala</h3>
-            </div>
-        </div>
     </header>
-    <main>
+    <main class="animate__animated animate__fadeInUp">
         <div class="mnTitle">
             <h2>Silahkan Isikan sesuai instruksi di <a href="#">docs</a></h2>
         </div>
         <div class="mnContent">
-            <button onclick="buatPR()" id="PRbtn">Buat daftar PR</button>
+            <button onclick="buatPR()" id="PRbtn"> Buat daftar PR </button>
         </div>
     </main>
     <script src="pr.js"></script>

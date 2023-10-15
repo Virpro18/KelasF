@@ -18,9 +18,9 @@ window.setTimeout("waktu()", 1000);
         detik = waktu.getSeconds()
         if(jam < 12) {
             day = "Pagi"
-        } else if (jam <= 15) {
+        } else if (jam < 15) {
          day = "Siang"
-        } else if (jam <= 18) {
+        } else if (jam < 18) {
          day = "Sore  "
         } else if (jam <= 24){
          day = "Malam"
