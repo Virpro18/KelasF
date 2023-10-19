@@ -59,8 +59,11 @@
             <h2>Silahkan Isikan sesuai instruksi di <a href="#">docs</a></h2>
         </div>
         <div class="mnContent">
-            <button onclick="buatPR()" id="PRbtn"> Buat daftar PR </button>
+            <label for="PRcount">Jumlah PR Max:15</label>
+            <input type="number" min="1" max="13" name="" id="PRcount">
+            <button onclick="buatPR()" id="PRbtn" disabled> Buat daftar PR </button>
         </div>
+        <div class="ctaPR"></div>
     </main>
     <script src="pr.js"></script>
     <script src="../script.js"></script>

@@ -218,7 +218,7 @@ main {
     }
 
     .title h1 {
-        font-size: 20px;
+        font-size: 22px;
         text-align: center;
     }
 
@@ -236,7 +236,7 @@ main {
 
     .chatBot {
         /* display: none; */
-        font-size: 15px;
+        font-size: 17px;
         max-width: 175px;
         max-height: 140px;
     }
@@ -253,12 +253,12 @@ main {
 
     .mnTitle h2,
     .mnTitle p {
-        font-size: 17px;
+        font-size: 19px;
         text-align: center;
     }
 
     .mnContent h3 {
-        font-size: 17px;
+        font-size: 19px;
     }
 }
 
