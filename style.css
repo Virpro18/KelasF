@@ -5,6 +5,9 @@ body {
     margin: 0px;
     box-sizing: border-box;
 }
+html,body {
+    min-height: 100vh;
+}
 
 :root {
     background: linear-gradient(30deg, #d2ff55e3, #5bd1ffe1);

@@ -6,9 +6,21 @@ window.setTimeout("waktu()", 1000);
 function waktu() {
     var waktu = new Date();
     setTimeout("waktu()", 1000);
-    document.getElementById("jam").innerHTML = waktu.getHours();
-    document.getElementById("menit").innerHTML = waktu.getMinutes();
-    document.getElementById("detik").innerHTML = waktu.getSeconds();
+    if (waktu.getHours() <10) {
+        document.getElementById("jam").innerHTML = `0` + waktu.getHours();
+    } else {
+        document.getElementById("jam").innerHTML =waktu.getHours();
+    }
+    if (waktu.getMinutes() < 10) {
+        document.getElementById("menit").innerHTML = `0` + waktu.getMinutes();
+    } else {
+        document.getElementById("menit").innerHTML =waktu.getMinutes();
+    }
+    if (waktu.getSeconds() < 10 ) {
+        document.getElementById("detik").innerHTML = `0` + waktu.getSeconds();
+    } else {
+        document.getElementById("detik").innerHTML = waktu.getSeconds();
+    }
 }
 
 function jawab(answer, waktu, jam, menit, detik, day) {
