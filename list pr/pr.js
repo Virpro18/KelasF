@@ -1,4 +1,4 @@
-window.setTimeout("waktu()", 1000);
+window.setTimeout("waktu()", 1000); 
 
 function waktu() {
     var waktu = new Date();
@@ -19,13 +19,18 @@ function waktu() {
         document.getElementById("detik").innerHTML = waktu.getSeconds();
     }
 }
-
+// FASE 1
+const cPR = document.getElementById(`PRbtn`)
+const before = document.getElementById(`save`)
 const PRcount = document.getElementById(`PRcount`)
 const PRbtn = document.querySelector(`.ctaPR`)
-const cPR = document.getElementById(`PRbtn`)
 
 PRcount.addEventListener(`input`, function () {
-    document.getElementById(`PRbtn`).disabled = false
+    if (PRcount.value >= 1 && PRcount.value <= 15) {
+        document.getElementById(`PRbtn`).disabled = false 
+    } else {
+        document.getElementById(`PRbtn`).disabled = true
+    }
 })
 
 function buatPR() {
@@ -34,15 +39,16 @@ function buatPR() {
     let bulan = date.getMonth() + 1
     let hari = date.getDate()
     if (hari < 10) {
-        hari = `0` + date.getDate()
+        hari = `0${date.getDate()}`
     } else {
-        hari = date.getDate()
+        hari
     }
     if (bulan < 10) {
-        bulan = `0` + date.getMonth()
+        bulan = `0${date.getMonth()}`  
     } else {
-        let bulan = date.getMonth()
+        bulan
     }
+    console.log(bulan)
     const createPR = document.querySelector(`.mnContent`)
     let pelajaran = [`TIdak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `MUSIK`]
 
@@ -51,6 +57,7 @@ function buatPR() {
         PRcount.value = ``
     } else if (PRcount.value <= 15 || PRcount.value >= 1) {
         createPR.innerHTML = ""
+        console.log(PRcount)
         const btnAdd = document.createElement(`button`)
 
         for (let i = 1; i <= parseInt(PRcount.value); i++) {
@@ -90,7 +97,7 @@ function buatPR() {
                 option.textContent = pelajaran[lo]
                 option.classList.add(`optionP`)
             }
-
+            
             PRbtn.appendChild(btnAdd)
 
             newDiv.classList.add(`New`)
@@ -109,13 +116,13 @@ function buatPR() {
 
             PE.textContent = `Tanggal di Kumpulkan`
             NO.textContent = `Note: Tanggal saat ini`
-
+            
             inpD.setAttribute(`type`, `date`)
             inpD.setAttribute(`value`, `${tahun}-${bulan}-${hari}`)
             inpD.classList.add(`date`)
-
+            
             comDiv.classList.add(`commit`)
-
+            
             btnSetPR.textContent = `Set`
             btnSetPR.classList.add(`set`)
             
@@ -125,24 +132,56 @@ function buatPR() {
         btnAdd.setAttribute(`id`, `buat`)
         btnAdd.textContent = `Buat`
     }
+    // FASE 2
     for(let n = 0; n < parseInt(PRcount.value); n++) {
         console.log(n)
+        const parent = document.querySelector(`.mnContent`)
+        const contain = document.querySelectorAll(`div.New`)[n]
         const setPR = document.querySelectorAll(`button.set`)[n]
-        const title = document.querySelectorAll(`input.inpPRTitle`)[n]
+        const inpTitle = document.querySelectorAll(`input.inpPRTitle`)[n]
+        const inpPn = document.querySelectorAll(`select.selectP`)[n]
+        const des = document.querySelectorAll(`textarea.inpDes`)[n]
+        const deadline = document.querySelectorAll(`input.date`)[n]
         const deletePR = document.querySelectorAll(`button.delete`)[n]
+        if (inpTitle.value) {
+            setPR.disabled = false
+        } else {
+            setPR.disabled = true
+        }
+        
         setPR.addEventListener(`click`, function() {
+            contain.innerHTML = ``
+            const title = document.createElement(`h3`)
+
+            contain.appendChild(title)
+            title.innerHTML = inpTitle.value
             console.log(`coba dlu gak sih`)
-            console.log(title.value)
         })
         deletePR.addEventListener(`click`, function() {
+            parent.removeChild(contain)
+            n++ ; n--
+            console.log(n)
             console.log(`coba delete gak sih`)
+            if (n == parseInt(PRcount.value) - 1) {
+                alert(`Bruh :():`)
+                PRbtn.innerHTML = ``
+                createPR.classList.remove(`Add`)
+                createPR.appendChild(before.cloneNode(true))
+                const cPR = document.getElementById(`PRbtn`)
+                cPR.onclick = buatPR
+            }
         })
-
+            console.log(n)
     }
+    // FASE 3
+    const finalBtn = document.getElementById(`buat`)
+    function final() {
+    
+    }
+    finalBtn.onclick = final
+    console.log(before)
 }
 cPR.onclick = buatPR
-
-
 document.addEventListener(`keypress`, function () {
     document.onkeydown = function (e) {
         let isi
@@ -153,6 +192,7 @@ document.addEventListener(`keypress`, function () {
         }
     }
 })
+
 // document.body.addEventListener(`mousemove`, function(event){
 //     const w = Math.round((event.clientX / window.innerWidth) * 225 + 1)
 //     const h = Math.round((event.clientY / window.innerHeight) * 225 + 1)
