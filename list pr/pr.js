@@ -149,9 +149,11 @@ function buatPR() {
         setPR.addEventListener(`click`, function() {
             localStorage.setItem(`title${n}`, inpTitle.value)
             const title = document.createElement(`h3`)
+            const des = document.createElement(`p`)
             contain.innerHTML = ``
             box.appendChild(contain)
             contain.appendChild(title)
+            contain.appendChild(des)
             title.innerHTML = inpTitle.value
             console.log(`coba dlu gak sih`)
         })
