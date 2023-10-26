@@ -23,7 +23,7 @@ function waktu() {
 const cPR = document.getElementById(`PRbtn`)
 const before = document.getElementById(`save`)
 const PRcount = document.getElementById(`PRcount`)
-const PRbtn = document.querySelector(`.ctaPR`)
+const box = document.querySelector(`.box`)
 
 PRcount.addEventListener(`input`, function () {
     if (PRcount.value >= 1 && PRcount.value <= 15) {
@@ -50,7 +50,7 @@ function buatPR() {
     }
     console.log(bulan)
     const createPR = document.querySelector(`.mnContent`)
-    let pelajaran = [`TIdak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `MUSIK`]
+    let pelajaran = [`TIdak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `Musik`,`Agama`,`B.Indo`,`B.Inggris`,`Informatika`]
 
     if (PRcount.value > 15 || PRcount.value < 1) {
         alert(`Banyak bet PR,Gak tau di kerjain ya xixixixixi`)
@@ -58,8 +58,6 @@ function buatPR() {
     } else if (PRcount.value <= 15 || PRcount.value >= 1) {
         createPR.innerHTML = ""
         console.log(PRcount)
-        const btnAdd = document.createElement(`button`)
-
         for (let i = 1; i <= parseInt(PRcount.value); i++) {
             console.log(i)
             const newDiv = document.createElement(`div`)
@@ -98,8 +96,6 @@ function buatPR() {
                 option.classList.add(`optionP`)
             }
             
-            PRbtn.appendChild(btnAdd)
-
             newDiv.classList.add(`New`)
             createPR.classList.add(`Add`)
 
@@ -129,8 +125,6 @@ function buatPR() {
             btnDeletePR.textContent = `Delete`
             btnDeletePR.classList.add(`delete`)
         }
-        btnAdd.setAttribute(`id`, `buat`)
-        btnAdd.textContent = `Buat`
     }
     // FASE 2
     for(let n = 0; n < parseInt(PRcount.value); n++) {
@@ -143,28 +137,31 @@ function buatPR() {
         const des = document.querySelectorAll(`textarea.inpDes`)[n]
         const deadline = document.querySelectorAll(`input.date`)[n]
         const deletePR = document.querySelectorAll(`button.delete`)[n]
-        if (inpTitle.value) {
-            setPR.disabled = false
-        } else {
-            setPR.disabled = true
-        }
+        setPR.disabled = true
+        inpTitle.addEventListener(`input`, function() {
+            if (inpTitle.value) {
+                setPR.disabled = false
+            } else {
+                setPR.disabled = true
+            }
+        })
         
         setPR.addEventListener(`click`, function() {
-            contain.innerHTML = ``
+            localStorage.setItem(`title${n}`, inpTitle.value)
             const title = document.createElement(`h3`)
-
+            contain.innerHTML = ``
+            box.appendChild(contain)
             contain.appendChild(title)
             title.innerHTML = inpTitle.value
             console.log(`coba dlu gak sih`)
         })
-        deletePR.addEventListener(`click`, function() {
+        deletePR.addEventListener(`click`, function a() {
             parent.removeChild(contain)
             n++ ; n--
             console.log(n)
             console.log(`coba delete gak sih`)
             if (n == parseInt(PRcount.value) - 1) {
                 alert(`Bruh :():`)
-                PRbtn.innerHTML = ``
                 createPR.classList.remove(`Add`)
                 createPR.appendChild(before.cloneNode(true))
                 const cPR = document.getElementById(`PRbtn`)
@@ -174,12 +171,6 @@ function buatPR() {
             console.log(n)
     }
     // FASE 3
-    const finalBtn = document.getElementById(`buat`)
-    function final() {
-    
-    }
-    finalBtn.onclick = final
-    console.log(before)
 }
 cPR.onclick = buatPR
 document.addEventListener(`keypress`, function () {
@@ -188,6 +179,8 @@ document.addEventListener(`keypress`, function () {
         if (e.keyCode == 13) {
             if (document.getElementById(`PRcount`).value) {
                 buatPR()
+            } else if (document.querySelector(`input.inpPRTitle`)) {
+                a()
             }
         }
     }
