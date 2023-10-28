@@ -1,4 +1,4 @@
-window.setTimeout("waktu()", 1000); 
+window.setTimeout("waktu()", 1000);
 
 function waktu() {
     var waktu = new Date();
@@ -23,11 +23,11 @@ function waktu() {
 const cPR = document.getElementById(`PRbtn`)
 const before = document.getElementById(`save`)
 const PRcount = document.getElementById(`PRcount`)
-const box = document.querySelector(`.box`)
+const box = document.querySelector(`div.contentPR`)
 
 PRcount.addEventListener(`input`, function () {
-    if (PRcount.value >= 1 && PRcount.value <= 15) {
-        document.getElementById(`PRbtn`).disabled = false 
+    if (PRcount.value >= 1 && PRcount.value <= 20) {
+        document.getElementById(`PRbtn`).disabled = false
     } else {
         document.getElementById(`PRbtn`).disabled = true
     }
@@ -44,15 +44,15 @@ function buatPR() {
         hari
     }
     if (bulan < 10) {
-        bulan = `0${date.getMonth()}`  
+        bulan = `0${date.getMonth()}`
     } else {
         bulan
     }
     console.log(bulan)
     const createPR = document.querySelector(`.mnContent`)
-    let pelajaran = [`TIdak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `Musik`,`Agama`,`B.Indo`,`B.Inggris`,`Informatika`]
+    let pelajaran = [`Tidak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `Musik`, `Agama`, `B.Indo`, `B.Inggris`, `Informatika`]
 
-    if (PRcount.value > 15 || PRcount.value < 1) {
+    if (PRcount.value > 20 || PRcount.value < 1) {
         alert(`Banyak bet PR,Gak tau di kerjain ya xixixixixi`)
         PRcount.value = ``
     } else if (PRcount.value <= 15 || PRcount.value >= 1) {
@@ -66,6 +66,7 @@ function buatPR() {
 
             const inpAdd = document.createElement(`input`)
             const inpD = document.createElement(`input`)
+            const inpDk = document.createElement(`input`)
 
             const select = document.createElement(`select`)
 
@@ -82,9 +83,10 @@ function buatPR() {
             newDiv.appendChild(select)
             newDiv.appendChild(inpDescription)
             newDiv.appendChild(dt)
-            dt.appendChild(PE)
             dt.appendChild(NO)
             dt.appendChild(inpD)
+            dt.appendChild(PE)
+            dt.appendChild(inpDk)
             newDiv.appendChild(comDiv)
             comDiv.appendChild(btnSetPR)
             comDiv.appendChild(btnDeletePR)
@@ -95,7 +97,7 @@ function buatPR() {
                 option.textContent = pelajaran[lo]
                 option.classList.add(`optionP`)
             }
-            
+
             newDiv.classList.add(`New`)
             createPR.classList.add(`Add`)
 
@@ -111,23 +113,26 @@ function buatPR() {
             dt.classList.add(`deadline`)
 
             PE.textContent = `Tanggal di Kumpulkan`
-            NO.textContent = `Note: Tanggal saat ini`
-            
+            NO.textContent = `Tanggal saat ini`
+
             inpD.setAttribute(`type`, `date`)
             inpD.setAttribute(`value`, `${tahun}-${bulan}-${hari}`)
             inpD.classList.add(`date`)
+            
+            inpDk.setAttribute(`type`, `date`)
+            inpDk.classList.add(`date1`)
             
             comDiv.classList.add(`commit`)
             
             btnSetPR.textContent = `Set`
             btnSetPR.classList.add(`set`)
-            
+
             btnDeletePR.textContent = `Delete`
             btnDeletePR.classList.add(`delete`)
         }
     }
     // FASE 2
-    for(let n = 0; n < parseInt(PRcount.value); n++) {
+    for (let n = 0; n < parseInt(PRcount.value); n++) {
         console.log(n)
         const parent = document.querySelector(`.mnContent`)
         const contain = document.querySelectorAll(`div.New`)[n]
@@ -136,30 +141,60 @@ function buatPR() {
         const inpPn = document.querySelectorAll(`select.selectP`)[n]
         const des = document.querySelectorAll(`textarea.inpDes`)[n]
         const deadline = document.querySelectorAll(`input.date`)[n]
+        const deadline1 = document.querySelectorAll(`input.date1`)[n]
         const deletePR = document.querySelectorAll(`button.delete`)[n]
+
         setPR.disabled = true
-        inpTitle.addEventListener(`input`, function() {
+        deadline.disabled = true
+        deadline1.required = true
+        inpTitle.addEventListener(`input`, function () {
             if (inpTitle.value) {
                 setPR.disabled = false
             } else {
                 setPR.disabled = true
             }
         })
-        
-        setPR.addEventListener(`click`, function() {
+
+        function set() {
             localStorage.setItem(`title${n}`, inpTitle.value)
-            const title = document.createElement(`h3`)
+            const tip = document.createElement(`div`)
+            const titlev = document.createElement(`h3`)
+            const pelajaran = document.createElement(`h3`)
             const des = document.createElement(`p`)
+            const timeL = new Date(deadline1.value) - new Date(deadline.value)
+            const days = Math.floor(timeL / (24 * 60 * 60 * 1000));
             contain.innerHTML = ``
             box.appendChild(contain)
-            contain.appendChild(title)
+            if (inpPn.value == `Tidak ada`) {
+                titlev.classList.add(`notP`)
+                contain.appendChild(titlev)
+            } else {
+                contain.appendChild(tip)
+                tip.appendChild(titlev)
+                tip.appendChild(pelajaran)
+                // contain.appendChild(pelajaran)
+            }
             contain.appendChild(des)
-            title.innerHTML = inpTitle.value
+            contain.classList.add(`lastS`)
+            contain.classList.remove(`New`)
+            titlev.innerHTML = inpTitle.value
+            pelajaran.innerHTML = inpPn.value
             console.log(`coba dlu gak sih`)
+        }
+        setPR.onclick = set
+
+       contain.addEventListener(`keypress`, function () {
+            contain.onkeydown = function (e) {
+                if (e.keyCode == 13) {
+                    if (inpTitle.value) {
+                        set()
+                    }
+                }
+            }
         })
-        deletePR.addEventListener(`click`, function a() {
+        deletePR.addEventListener(`click`, function () {
             parent.removeChild(contain)
-            n++ ; n--
+            n++; n--
             console.log(n)
             console.log(`coba delete gak sih`)
             if (n == parseInt(PRcount.value) - 1) {
@@ -170,27 +205,20 @@ function buatPR() {
                 cPR.onclick = buatPR
             }
         })
-            console.log(n)
     }
-    // FASE 3
+    // TAMBAHAN
 }
 cPR.onclick = buatPR
 document.addEventListener(`keypress`, function () {
     document.onkeydown = function (e) {
         let isi
         if (e.keyCode == 13) {
-            if (document.getElementById(`PRcount`).value) {
-                buatPR()
-            } else if (document.querySelector(`input.inpPRTitle`)) {
-                a()
+            if (document.getElementById(`PRcount`)) {
+                if (document.getElementById(`PRcount`).value) {
+                    buatPR()
+                }
             }
         }
     }
 })
 
-// document.body.addEventListener(`mousemove`, function(event){
-//     const w = Math.round((event.clientX / window.innerWidth) * 225 + 1)
-//     const h = Math.round((event.clientY / window.innerHeight) * 225 + 1)
-//     document.body.style.backgroundColor = `rgb(${w},${h},70)`
-//     console.log(w,h)
-// })

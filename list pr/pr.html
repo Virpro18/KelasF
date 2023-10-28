@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="../assets/Black And White Modern Vintage Retro Brand Logo (1).png">
     <link rel="stylesheet" href="../style.css">
@@ -11,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Exo+2:wght@300&family=Josefin+Sans:wght@500&family=Play&display=swap"
-    rel="stylesheet">
-    <title>List PR</title>
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Exo+2:wght@300&family=Josefin+Sans:wght@500&family=Play&display=swap"
+        rel="stylesheet">
+    <title>PR List</title>
 </head>
 
 <body>
@@ -27,13 +28,13 @@
             </div>
         </div>
         <div class="title">
-            <h1>List PR</h1>
+            <h1>PR List</h1>
             <nav class="hdNv">
                 <a href="../index.html" class="nvLink">
                     <button class="nvBtn">Home</button>
                 </a>
                 <a class="nvLink">
-                    <button class="nvBtn here">List PR</button>
+                    <button class="nvBtn here">PR List</button>
                 </a>
                 <a href="" class="nvLink">
                     <button class="nvBtn">Project</button>
@@ -46,26 +47,36 @@
                 </a>
             </nav>
         </div>
-            <div class="time">
-                <p id="jam"></p>
-                <p>:</p>
-                <p id="menit"></p>
-                <p>:</p>
-                <p id="detik"></p>
-            </div>
+        <div class="time">
+            <p id="jam"></p>
+            <p>:</p>
+            <p id="menit"></p>
+            <p>:</p>
+            <p id="detik"></p>
+        </div>
     </header>
     <main class="animate__animated animate__fadeInUp">
         <div class="mnTitle">
-            <h2>Silahkan Isikan sesuai instruksi di <a href="#">docs</a></h2>
+            <h2>How to use it and explanations are in the <a href="#">docs</a></h2>
         </div>
         <div class="mnContent">
             <div id="save">
-                <label for="PRcount">Jumlah PR Max:15</label>
-                <input type="number" min="1" max="15" name="" id="PRcount">
+                <label for="PRcount">Jumlah PR Max:20 <br> Note:Bisa di tambah</label>
+                <input type="number" min="1" max="20" name="" id="PRcount">
                 <button id="PRbtn" disabled> Buat daftar PR &times;</button>
             </div>
         </div>
-        <div class="box"></div>
+        <h1>PR List</h1>
+        <div class="box">
+            <div class="navPR">
+                <h1 id="rTitle">Created</h1>
+                <button>Created</button>
+                <button>Finished</button>
+                <button>finished</button>
+                <button>Deleted</button>
+            </div>
+            <div class="contentPR"></div>
+        </div>
     </main>
     <script src="pr.js"></script>
 </body>
