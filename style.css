@@ -85,7 +85,7 @@ p {
     display: flex;
     align-items: center;
     font-family: 'Play', sans-serif;
-    max-width: 400px;
+    max-width: 500px;
     min-width: 90px;
     height: 55px;
     max-height: 100px;
@@ -97,7 +97,7 @@ p {
     background-color: rgba(240, 248, 255, 0);
     border: none;
     font-size: 19px;
-    width: 75px;
+    min-width: 75px;
     height: 50px;
     padding: 5px;
     transition: all 0.5s ease-in-out;
@@ -190,6 +190,7 @@ main {
     :root {
         overflow-x: hidden;
         background-size: cover;
+        height: 130vh;
     }
 
     header {

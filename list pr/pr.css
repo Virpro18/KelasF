@@ -1,5 +1,5 @@
 :root {
-    background: linear-gradient(120deg, #bc8cfac4 10%, #fdc97b 50%, #beb75290 90%);
+    background: linear-gradient(90deg, #bc8cfac4 10%, #fdc97b 50%, #beb75290 90%);
 }
 @keyframes set {
     0% {background-color: greenyellow;}
@@ -87,25 +87,38 @@ a {
     text-align: center;
 }
 .New,.lastS {
-    width: 18vw;
+    max-width: 18vw;
     height: auto;
     background-color: #7e7998b7;
     box-shadow: 3px 0px 5px 4px #44444479;
     border: solid black 2px;
     transition: 1s ease-in-out;
 }
-.lastS {
+div.lastS {
+    margin-top: 20px;
+    min-width: 18vw;
+    max-width: fit-content;
     background-color: #5656;
 }
-.lastS div{
+.lastS>div{
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /* width: fit-content; */
 }
-.lastS h3 {
-    width: 50%;
+.lastS h3, .lastS h2 {
     text-align: center;
+    padding: 4px 0;
 }
 .lastS .notP {
     width: 100%;
+}
+.lastS>p {
+    text-align: center;
+    min-height: 70px;
+    background-color: #98980977;
+    border: #000000 solid 1px;
+    border-radius: 4px;
 }
 .New div p {
     margin: 0;
@@ -159,7 +172,7 @@ a {
     justify-content: space-between;
 }
 .set,.delete {
-    width: 45px;
+    min-width: 45px;
     background: rgb(108, 255, 108);
     cursor: pointer;
     transition: 0.4s ease-in-out;
@@ -198,16 +211,14 @@ a {
 .navPR {
    text-align: center;
    border: #000000 solid 2px;
-   background-color: #a59bff5b;
+   border-radius: 5px;
+   background-color: #cbc5ff5b;
    width: 50vw;
 }
 .navPR button {
     cursor: pointer;
 
 }
-/* .navPR button:hover {
-    
-} */
 #rTitle {
     margin-bottom: 5px;
 }
@@ -215,5 +226,9 @@ a {
     width: 100vw;
     margin-top: 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+}
+.contentPR>p {
+    font-size: 20px;
 }

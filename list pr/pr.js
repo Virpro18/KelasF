@@ -49,7 +49,7 @@ function buatPR() {
         bulan
     }
     console.log(bulan)
-    const createPR = document.querySelector(`.mnContent`)
+    const createPR = document.querySelector(`div.mnContent`)
     let pelajaran = [`Tidak ada`, `IPA`, `IPS`, `PPKN`, `Matematika`, `Fisika`, `PJOK`, `Musik`, `Agama`, `B.Indo`, `B.Inggris`, `Informatika`]
 
     if (PRcount.value > 20 || PRcount.value < 1) {
@@ -118,12 +118,12 @@ function buatPR() {
             inpD.setAttribute(`type`, `date`)
             inpD.setAttribute(`value`, `${tahun}-${bulan}-${hari}`)
             inpD.classList.add(`date`)
-            
+
             inpDk.setAttribute(`type`, `date`)
             inpDk.classList.add(`date1`)
-            
+
             comDiv.classList.add(`commit`)
-            
+
             btnSetPR.textContent = `Set`
             btnSetPR.classList.add(`set`)
 
@@ -147,43 +147,81 @@ function buatPR() {
         setPR.disabled = true
         deadline.disabled = true
         deadline1.required = true
-        inpTitle.addEventListener(`input`, function () {
-            if (inpTitle.value) {
-                setPR.disabled = false
-            } else {
-                setPR.disabled = true
+        deadline1.addEventListener(`change`,function() {
+            const tanggal = new Date(this.value)
+
+            if (tanggal < new Date()) {
+                j++
+                alert(`jangan ngawur dah` + j)
+                this.value = ``
+            }
+            if(j == 7) {
+                alert(`udahlah`)
+                location.reload()
             }
         })
 
+        inpTitle.addEventListener(`input`, function () {
+            deadline1.addEventListener(`input`, function () {
+                if (inpTitle.value && new Date(deadline1.value) > new Date() ) {
+                    setPR.disabled = false
+                } else {
+                    setPR.disabled = true
+                }
+            })
+        })
+        deadline1.addEventListener(`input`, function () {
+            inpTitle.addEventListener(`input`, function () {
+                if (inpTitle.value && deadline1.value) {
+                    setPR.disabled = false
+                } else {
+                    setPR.disabled = true
+                }
+            })
+        })
+        let j = 0
+
         function set() {
             localStorage.setItem(`title${n}`, inpTitle.value)
+            localStorage.setItem(`des${n}`, des.value)
             const tip = document.createElement(`div`)
             const titlev = document.createElement(`h3`)
+            const tLeft = document.createElement(`h2`)
             const pelajaran = document.createElement(`h3`)
-            const des = document.createElement(`p`)
+            const desc = document.createElement(`p`)
             const timeL = new Date(deadline1.value) - new Date(deadline.value)
             const days = Math.floor(timeL / (24 * 60 * 60 * 1000));
+            console.log(`hari `+days)
             contain.innerHTML = ``
             box.appendChild(contain)
             if (inpPn.value == `Tidak ada`) {
                 titlev.classList.add(`notP`)
+                contain.appendChild(tLeft)
                 contain.appendChild(titlev)
             } else {
                 contain.appendChild(tip)
+                tip.appendChild(tLeft)
                 tip.appendChild(titlev)
                 tip.appendChild(pelajaran)
                 // contain.appendChild(pelajaran)
             }
-            contain.appendChild(des)
+            if (des.value) {
+                contain.appendChild(desc)
+            }
             contain.classList.add(`lastS`)
             contain.classList.remove(`New`)
             titlev.innerHTML = inpTitle.value
             pelajaran.innerHTML = inpPn.value
+            desc.textContent = des.value
+            tLeft.innerHTML = `${days} Hari Lagi`
+            if(document.getElementById(`re`)) {
+                document.getElementById(`re`).remove()
+            }
             console.log(`coba dlu gak sih`)
         }
         setPR.onclick = set
 
-       contain.addEventListener(`keypress`, function () {
+        contain.addEventListener(`keypress`, function () {
             contain.onkeydown = function (e) {
                 if (e.keyCode == 13) {
                     if (inpTitle.value) {
@@ -221,4 +259,3 @@ document.addEventListener(`keypress`, function () {
         }
     }
 })
-
