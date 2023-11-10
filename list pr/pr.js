@@ -1,3 +1,60 @@
+// Pengecekan Data PR
+if (localStorage.length > 0) {
+    document.getElementById(`re`).remove()
+    for (let i = 0; i <= localStorage.getItem(`P`); i++) {
+        if (localStorage.getItem(`deadline${i}`)) {
+        console.log(`ada` + localStorage.length)
+        console.log(`i sebanyak ${i}`)
+
+        const title = localStorage.getItem(`title${i}`)
+        const dead = new Date(localStorage.getItem(`deadline${i}`)) - new Date()
+        const days = Math.floor(dead / (24 * 60 * 60 * 1000));
+        console.log(days)
+        console.log(new Date())
+
+        const tip = document.createElement(`div`)
+        const contain = document.createElement(`div`)
+        const fiDe = document.createElement(`div`)
+        const finish = document.createElement(`button`)
+        const failed = document.createElement(`button`)
+        const titlev = document.createElement(`h3`)
+        const tLeft = document.createElement(`h2`)
+        const pelajaran = document.createElement(`h3`)
+        const desc = document.createElement(`p`)
+        const box = document.querySelector(`.contentPR`)
+
+        box.appendChild(contain)
+        contain.appendChild(tip)
+        tip.appendChild(tLeft)
+        tip.appendChild(titlev)
+        if(localStorage.getItem(`pelajaran${i}`)) {
+            tip.appendChild(pelajaran)
+            pelajaran.textContent = localStorage.getItem(`pelajaran${i}`)
+        }
+        if(localStorage.getItem(`description${i}`)) {
+            contain.appendChild(desc)
+            desc.textContent = localStorage.getItem(`description${i}`)
+        }
+
+        contain.appendChild(fiDe)
+        fiDe.appendChild(finish)
+        fiDe.appendChild(failed)
+
+        contain.classList.add(`lastS`)
+        fiDe.classList.add(`fiDe`)
+        finish.classList.add(`selesai`)
+        failed.classList.add(`gagal`)
+
+        titlev.textContent = localStorage.getItem(`title${i}`)
+        tLeft.textContent = `${days} Hari Lagi`
+
+        finish.textContent = `Finish`
+        failed.textContent = `Delete`
+    }
+}
+}
+// Pengecekan Data PR END
+
 window.setTimeout("waktu()", 1000);
 
 function waktu() {
@@ -19,11 +76,12 @@ function waktu() {
         document.getElementById("detik").innerHTML = waktu.getSeconds();
     }
 }
-// FASE 1
+// FASE 1: Pembuatan,Pengisian, dan Pengambilan data
 const cPR = document.getElementById(`PRbtn`)
 const before = document.getElementById(`save`)
 const PRcount = document.getElementById(`PRcount`)
 const box = document.querySelector(`div.contentPR`)
+let p = 0
 
 PRcount.addEventListener(`input`, function () {
     if (PRcount.value >= 1 && PRcount.value <= 20) {
@@ -131,7 +189,8 @@ function buatPR() {
             btnDeletePR.classList.add(`delete`)
         }
     }
-    // FASE 2
+    // FASE 1 END
+    // FASE 2 : penyimpanan Data PR
     for (let n = 0; n < parseInt(PRcount.value); n++) {
         console.log(n)
         const parent = document.querySelector(`.mnContent`)
@@ -147,7 +206,11 @@ function buatPR() {
         setPR.disabled = true
         deadline.disabled = true
         deadline1.required = true
-        deadline1.addEventListener(`change`,function() {
+
+
+
+        let j = 0
+        deadline1.addEventListener(`change`, function () {
             const tanggal = new Date(this.value)
 
             if (tanggal < new Date()) {
@@ -155,7 +218,7 @@ function buatPR() {
                 alert(`jangan ngawur dah` + j)
                 this.value = ``
             }
-            if(j == 7) {
+            if (j == 7) {
                 alert(`udahlah`)
                 location.reload()
             }
@@ -163,7 +226,7 @@ function buatPR() {
 
         inpTitle.addEventListener(`input`, function () {
             deadline1.addEventListener(`input`, function () {
-                if (inpTitle.value && new Date(deadline1.value) > new Date() ) {
+                if (inpTitle.value && new Date(deadline1.value) > new Date()) {
                     setPR.disabled = false
                 } else {
                     setPR.disabled = true
@@ -179,23 +242,24 @@ function buatPR() {
                 }
             })
         })
-        let j = 0
-
         function set() {
-            localStorage.setItem(`title${n}`, inpTitle.value)
-            localStorage.setItem(`des${n}`, des.value)
+            p++
             const tip = document.createElement(`div`)
+            const fiDe = document.createElement(`div`)
+            const finish = document.createElement(`button`)
+            const failed = document.createElement(`button`)
             const titlev = document.createElement(`h3`)
             const tLeft = document.createElement(`h2`)
             const pelajaran = document.createElement(`h3`)
             const desc = document.createElement(`p`)
             const timeL = new Date(deadline1.value) - new Date(deadline.value)
             const days = Math.floor(timeL / (24 * 60 * 60 * 1000));
-            console.log(`hari `+days)
+            console.log(`hari ` + days)
+            console.log(new Date(deadline1.value))
+
             contain.innerHTML = ``
             box.appendChild(contain)
             if (inpPn.value == `Tidak ada`) {
-                titlev.classList.add(`notP`)
                 contain.appendChild(tLeft)
                 contain.appendChild(titlev)
             } else {
@@ -203,20 +267,52 @@ function buatPR() {
                 tip.appendChild(tLeft)
                 tip.appendChild(titlev)
                 tip.appendChild(pelajaran)
-                // contain.appendChild(pelajaran)
             }
             if (des.value) {
                 contain.appendChild(desc)
             }
+            contain.appendChild(fiDe)
+            fiDe.appendChild(finish)
+            fiDe.appendChild(failed)
+
             contain.classList.add(`lastS`)
+            fiDe.classList.add(`fiDe`)
+            finish.classList.add(`selesai`)
+            failed.classList.add(`gagal`)
             contain.classList.remove(`New`)
+
             titlev.innerHTML = inpTitle.value
             pelajaran.innerHTML = inpPn.value
             desc.textContent = des.value
             tLeft.innerHTML = `${days} Hari Lagi`
-            if(document.getElementById(`re`)) {
+            finish.textContent = `Finish`
+            failed.textContent = `Delete`
+            if (document.getElementById(`re`)) {
                 document.getElementById(`re`).remove()
             }
+            if (localStorage.getItem(`P`)) {
+                localStorage.setItem(`P`,parseInt(localStorage.getItem(`P`)) + 1)
+                localStorage.setItem(`title${localStorage.getItem(`P`)}`, inpTitle.value)
+                localStorage.setItem(`deadline${localStorage.getItem(`P`)}`, deadline1.value)
+                if(inpPn.value != `Tidak Ada`) {
+                    localStorage.setItem(`pelajaran${localStorage.getItem(`P`)}`, inpPn.value)
+                }
+                if (des.value) {
+                    localStorage.setItem(`description${localStorage.getItem(`P`)}`, des.value)
+                }
+            } else {
+                localStorage.setItem(`P`, p-1)
+                localStorage.setItem(`title${n}`, inpTitle.value)
+                if(inpPn.value != `Tidak Ada`) {
+                    localStorage.setItem(`pelajaran${n}`, inpPn.value)
+                }
+                if (des.value) {
+                    localStorage.setItem(`description${n}`, des.value)
+                }
+                localStorage.setItem(`deadline${n}`, deadline1.value)
+            }
+
+            console.log(inpTitle)
             console.log(`coba dlu gak sih`)
         }
         setPR.onclick = set
@@ -224,7 +320,7 @@ function buatPR() {
         contain.addEventListener(`keypress`, function () {
             contain.onkeydown = function (e) {
                 if (e.keyCode == 13) {
-                    if (inpTitle.value) {
+                    if (inpTitle.value && deadline1.value) {
                         set()
                     }
                 }
@@ -246,6 +342,7 @@ function buatPR() {
     }
     // TAMBAHAN
 }
+
 cPR.onclick = buatPR
 document.addEventListener(`keypress`, function () {
     document.onkeydown = function (e) {
