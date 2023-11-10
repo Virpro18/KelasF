@@ -356,3 +356,4 @@ document.addEventListener(`keypress`, function () {
         }
     }
 })
+// capek bang
