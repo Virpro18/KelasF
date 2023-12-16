@@ -43,6 +43,7 @@ function jawab(answer, waktu, jam, menit, detik, day) {
         input.value = ``
     }
 }
+document.getElementsByClassName(`.botBtn`).onclick = jawab()
 document.addEventListener(`keypress`, function () {
     document.onkeydown = function (e) {
         if (e.keyCode == 13) {

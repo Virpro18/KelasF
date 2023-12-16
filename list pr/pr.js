@@ -1,57 +1,87 @@
 // Pengecekan Data PR
 if (localStorage.length > 0) {
     document.getElementById(`re`).remove()
-    for (let i = 0; i <= localStorage.getItem(`P`); i++) {
+    for (let i = 0; i <= parseInt(localStorage.getItem(`P`)); i++) {
         if (localStorage.getItem(`deadline${i}`)) {
-        console.log(`ada` + localStorage.length)
-        console.log(`i sebanyak ${i}`)
+            console.log(`ada` + localStorage.length)
+            console.log(`i sebanyak ${i}`)
 
-        const title = localStorage.getItem(`title${i}`)
-        const dead = new Date(localStorage.getItem(`deadline${i}`)) - new Date()
-        const days = Math.floor(dead / (24 * 60 * 60 * 1000));
-        console.log(days)
-        console.log(new Date())
+            const dead = new Date(localStorage.getItem(`deadline${i}`)) - new Date()
+            const days = Math.floor(dead / (24 * 60 * 60 * 1000));
+            console.log(days)
+            console.log(new Date())
+            const tip = document.createElement(`div`)
+            const contain = document.createElement(`div`)
+            const fiDe = document.createElement(`div`)
+            const finish = document.createElement(`button`)
+            const failed = document.createElement(`button`)
+            const titlev = document.createElement(`h3`)
+            const tLeft = document.createElement(`h2`)
+            const pelajaran = document.createElement(`h3`)
+            const desc = document.createElement(`p`)
+            const box = document.querySelector(`.contentPR`)
 
-        const tip = document.createElement(`div`)
-        const contain = document.createElement(`div`)
-        const fiDe = document.createElement(`div`)
-        const finish = document.createElement(`button`)
-        const failed = document.createElement(`button`)
-        const titlev = document.createElement(`h3`)
-        const tLeft = document.createElement(`h2`)
-        const pelajaran = document.createElement(`h3`)
-        const desc = document.createElement(`p`)
-        const box = document.querySelector(`.contentPR`)
+            console.log(`sisa${days}`)
+            console.log(typeof (days))
 
-        box.appendChild(contain)
-        contain.appendChild(tip)
-        tip.appendChild(tLeft)
-        tip.appendChild(titlev)
-        if(localStorage.getItem(`pelajaran${i}`)) {
-            tip.appendChild(pelajaran)
-            pelajaran.textContent = localStorage.getItem(`pelajaran${i}`)
+            box.appendChild(contain)
+            contain.appendChild(tip)
+            tip.appendChild(tLeft)
+            tip.appendChild(titlev)
+            if (localStorage.getItem(`pelajaran${i}`)) {
+                tip.appendChild(pelajaran)
+                pelajaran.textContent = localStorage.getItem(`pelajaran${i}`)
+            }
+            if (localStorage.getItem(`description${i}`)) {
+                contain.appendChild(desc)
+                desc.textContent = localStorage.getItem(`description${i}`)
+            }
+
+            contain.appendChild(fiDe)
+            fiDe.appendChild(finish)
+            fiDe.appendChild(failed)
+
+            contain.classList.add(`lastS`)
+            fiDe.classList.add(`fiDe`)
+            finish.classList.add(`selesai`)
+            failed.classList.add(`gagal`)
+
+            titlev.textContent = localStorage.getItem(`title${i}`)
+            tLeft.textContent = `${days} Hari Lagi`
+
+            finish.textContent = `Finish`
+            failed.textContent = `Delete`
+            
+            function del() {
+                contain.remove()
+                localStorage.removeItem(`title${i}`)
+                localStorage.removeItem(`deadline${i}`)
+                if (localStorage.getItem(`pelajaran${i}`)) {
+                    localStorage.removeItem(`pelajaran${i}`)
+                }
+                if (localStorage.getItem(`description${i}`)) {
+                    localStorage.removeItem(`description${i}`)
+                }
+                localStorage.removeItem(`P`)
+                localStorage.setItem(`p`,parseInt(localStorage.getItem(`P`)))
+            }
+            if (days == 0) {
+                contain.remove()
+                del()
+            }
+            const delet = document.querySelectorAll(`button.gagal`)[i]
+            delet.addEventListener(`click`,function() {
+                let p = parseInt(localStorage.getItem(`P`))
+                console.table(typeof(p))
+                localStorage.setItem(`P`,p-1)
+                del()
+            })
+            console.log(finish)
+            if (localStorage.getItem(`p`) == 0) {
+                localStorage.removeItem(`P`)
+            }
         }
-        if(localStorage.getItem(`description${i}`)) {
-            contain.appendChild(desc)
-            desc.textContent = localStorage.getItem(`description${i}`)
-        }
-
-        contain.appendChild(fiDe)
-        fiDe.appendChild(finish)
-        fiDe.appendChild(failed)
-
-        contain.classList.add(`lastS`)
-        fiDe.classList.add(`fiDe`)
-        finish.classList.add(`selesai`)
-        failed.classList.add(`gagal`)
-
-        titlev.textContent = localStorage.getItem(`title${i}`)
-        tLeft.textContent = `${days} Hari Lagi`
-
-        finish.textContent = `Finish`
-        failed.textContent = `Delete`
     }
-}
 }
 // Pengecekan Data PR END
 
@@ -287,23 +317,36 @@ function buatPR() {
             tLeft.innerHTML = `${days} Hari Lagi`
             finish.textContent = `Finish`
             failed.textContent = `Delete`
+
+            // document.querySelectorAll(`.gagal`).forEach(function(cell){
+            //     cell.addEventListener(`click`,function() {
+            //         contain.remove()
+            //     })
+            // })
+            document.querySelectorAll(`.gagal`)[n].addEventListener(`click`, function() {
+                contain.remove()
+                localStorage.removeItem(`title${n}`)
+                localStorage.removeItem(`deadline${n}`)
+                localStorage.removeItem(`P`)
+                localStorage.setItem(`P`,parseInt(localStorage.getItem(`P`))+ -1)
+            })
             if (document.getElementById(`re`)) {
                 document.getElementById(`re`).remove()
             }
             if (localStorage.getItem(`P`)) {
-                localStorage.setItem(`P`,parseInt(localStorage.getItem(`P`)) + 1)
+                localStorage.setItem(`P`, parseInt(localStorage.getItem(`P`)) + 1)
                 localStorage.setItem(`title${localStorage.getItem(`P`)}`, inpTitle.value)
                 localStorage.setItem(`deadline${localStorage.getItem(`P`)}`, deadline1.value)
-                if(inpPn.value != `Tidak Ada`) {
+                if (inpPn.value != `Tidak Ada`) {
                     localStorage.setItem(`pelajaran${localStorage.getItem(`P`)}`, inpPn.value)
                 }
                 if (des.value) {
                     localStorage.setItem(`description${localStorage.getItem(`P`)}`, des.value)
                 }
             } else {
-                localStorage.setItem(`P`, p-1)
+                localStorage.setItem(`P`, p)
                 localStorage.setItem(`title${n}`, inpTitle.value)
-                if(inpPn.value != `Tidak Ada`) {
+                if (inpPn.value != `Tidak Ada`) {
                     localStorage.setItem(`pelajaran${n}`, inpPn.value)
                 }
                 if (des.value) {
