@@ -7,6 +7,7 @@ if (localStorage.length > 0) {
             console.log(`i sebanyak ${i}`)
 
             const dead = new Date(localStorage.getItem(`deadline${i}`)) - new Date()
+            console.log(new Date(localStorage.getItem(`deadline${i}`)))
             const days = Math.floor(dead / (24 * 60 * 60 * 1000));
             console.log(days)
             console.log(new Date())
